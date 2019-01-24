@@ -1,17 +1,35 @@
-let submitButton = document.getElementById('button');
+window.addEventListener('load', () => {
 
-submitButton.addEventListener('click', function(){
+  let calendar = new Calendar();
 
-  let eventDescription = document.getElementById('desc').value;
-  let eventDate = document.getElementById('date').value;
-  let eventTime = document.getElementById('time').value;
+  let submitButton = document.getElementById('button');
 
-  let eventNew = new Event(eventDescription, eventDate, eventTime);
+  submitButton.addEventListener('click', function(){
+    let eventDescription = document.getElementById('desc').value;
+    let eventDate = document.getElementById('date').value;
+    let eventTime = document.getElementById('time').value;
 
-  let eventListing = document.getElementById('eventListing');
+    let eventNew = new Event(eventDescription, eventDate, eventTime);
 
-  let eventAdd = document.createElement("P");
-  eventAdd.innerText = `${eventNew.description} \n ${eventNew.date} \n ${eventNew.time}`;
+    calendar.add(eventNew);
+    console.log(eventNew);
 
-  eventListing.append(eventAdd);
-});
+    // let eventListing = document.getElementById('eventListing');
+    // let eventAdd = document.createElement("P");
+
+    // eventAdd.innerText = `${eventNew.description} \n ${eventNew.date} \n ${eventNew.time}`;
+    // eventAdd.innerText = `${eventNew.description} - ${eventNew.date} ${eventNew.time}`;
+
+    // eventListing.append(eventAdd);
+
+    display();
+  })
+
+  const display = () => {
+    let eventsDiv = document.getElementById('eventListing');
+    events = calendar.elementToDisplay();
+    eventsDiv.innerHTML = '';
+    eventsDiv.appendChild(events);
+  }
+
+})

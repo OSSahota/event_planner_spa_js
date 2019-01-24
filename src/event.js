@@ -4,4 +4,10 @@ class Event {
     this.date = date;
     this.time = time;
   }
+
+  elementToDisplay(){
+    let eventDiv = document.createElement('div');
+    eventDiv.innerText = `${this.description} - ${this.date} ${this.time}`;
+    return eventDiv;
+  }
 }
